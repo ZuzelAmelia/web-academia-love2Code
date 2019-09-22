@@ -20,7 +20,7 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h2>Academia de Programación Love2Code - Bienvenid@</h2>
+			<h2>Academia de Programación Love2Code - Bienvenidos todos</h2>
 		</div>
 	</div>
 	
