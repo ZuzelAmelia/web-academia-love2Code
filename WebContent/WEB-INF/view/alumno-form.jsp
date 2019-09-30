@@ -30,7 +30,7 @@
 	<div id="container">
 		<h3>Guardar Alumno</h3>
 		<i>Rellena el formulario. Los campos con asterisco (*) son
-			obligatorios.</i>
+			requeridos.</i>
 
 		<form:form action="guardarAlumno" modelAttribute="alumno"
 			method="POST">
