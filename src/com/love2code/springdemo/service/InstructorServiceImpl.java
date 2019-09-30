@@ -13,16 +13,16 @@ import com.love2code.springdemo.entity.Instructor;
 
 @Service
 public class InstructorServiceImpl implements InstructorService {
-	
+
 	// inyectamos el instructorDAO
-	
-			@Autowired
-			private InstructorDAO instructorDAO;
+
+	@Autowired
+	private InstructorDAO instructorDAO;
 
 	@Override
 	@Transactional
 	public List<Instructor> getInstructores() {
-		
+
 		return instructorDAO.getInstructores();
 	}
 
@@ -30,7 +30,7 @@ public class InstructorServiceImpl implements InstructorService {
 	@Transactional
 	public void guardarInstructor(@Valid Instructor elInstructor) {
 		instructorDAO.guardarInstructor(elInstructor);
-		
+
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class InstructorServiceImpl implements InstructorService {
 	@Transactional
 	public void eliminarInstructor(int elId) {
 		instructorDAO.eliminarInstructor(elId);
-		
+
 	}
 
 	@Override
 	@Transactional
 	public List<Instructor> buscarInstructores(String theSearchName) {
-		
+
 		return instructorDAO.buscarInstructores(theSearchName);
 	}
 

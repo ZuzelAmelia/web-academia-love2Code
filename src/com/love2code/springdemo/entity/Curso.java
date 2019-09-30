@@ -1,9 +1,5 @@
 package com.love2code.springdemo.entity;
 
-
-
-
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,31 +12,26 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-
 @Entity
-@Table(name="curso")
+@Table(name = "curso")
 public class Curso {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@NotBlank(message="el nombre es requerido")
-	@Size(min=3, max=100, message="debe tener entre 3 y 100 caracteres máximo")
-	@Column(name="titulo")
+
+	@NotBlank(message = "el nombre es requerido")
+	@Size(min = 3, max = 100, message = "debe tener entre 3 y 100 caracteres máximo")
+	@Column(name = "titulo")
 	private String titulo;
-	
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-			 CascadeType.DETACH, CascadeType.REFRESH})
-	@JoinColumn(name="instructor_id")
+
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+	@JoinColumn(name = "instructor_id")
 	private Instructor instructor;
-	
 
 	public Curso() {
-		
-				
+
 	}
 
 	public Curso(String titulo) {
@@ -60,7 +51,7 @@ public class Curso {
 	}
 
 	public void setTitulo(String titulo) {
-		this.titulo= titulo;
+		this.titulo = titulo;
 	}
 
 	public Instructor getInstructor() {
@@ -71,12 +62,9 @@ public class Curso {
 		this.instructor = instructor;
 	}
 
-	
-
 	@Override
 	public String toString() {
 		return "Curso [id=" + id + ", title=" + titulo + "]";
 	}
 
-	
 }

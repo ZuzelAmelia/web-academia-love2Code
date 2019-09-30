@@ -8,22 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="instructor_detalle")
+@Table(name = "instructor_detalle")
 public class InstructorDetalle {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="canal_youtube")
+
+	@Column(name = "canal_youtube")
 	private String canalYoutube;
-	
-	@Column(name="hobby")
+
+	@Column(name = "hobby")
 	private String hobby;
-	
+
 	public InstructorDetalle() {
-		
+
 	}
 
 	public InstructorDetalle(String canalYoutube, String hobby) {
@@ -52,5 +52,4 @@ public class InstructorDetalle {
 		return "InstructorDetalle [id=" + id + ", canalYoutube=" + canalYoutube + ", hobby=" + hobby + "]";
 	}
 
-	
 }

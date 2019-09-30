@@ -11,11 +11,10 @@ import com.love2code.springdemo.entity.Alumno;
 
 @Service
 public class AlumnoServiceImpl implements AlumnoService {
-	
+
 	// inyectamos el alumnoDAO
-		@Autowired
-		private AlumnoDAO alumnoDAO;
-		
+	@Autowired
+	private AlumnoDAO alumnoDAO;
 
 	@Override
 	@Transactional
@@ -23,14 +22,12 @@ public class AlumnoServiceImpl implements AlumnoService {
 		return alumnoDAO.getAlumnos();
 	}
 
-
 	@Override
 	@Transactional
 	public void guardarAlumno(Alumno elAlumno) {
 		alumnoDAO.guardarAlumno(elAlumno);
-		
-	}
 
+	}
 
 	@Override
 	@Transactional
@@ -38,19 +35,17 @@ public class AlumnoServiceImpl implements AlumnoService {
 		return alumnoDAO.getAlumno(theId);
 	}
 
-
 	@Override
 	@Transactional
 	public void eliminarAlumno(int elId) {
 		alumnoDAO.eliminarAlumno(elId);
-		
-	}
 
+	}
 
 	@Override
 	@Transactional
 	public List<Alumno> buscarAlumnos(String theSearchName) {
-		
+
 		return alumnoDAO.buscarAlumnos(theSearchName);
 	}
 }
