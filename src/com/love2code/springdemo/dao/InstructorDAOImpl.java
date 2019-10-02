@@ -51,7 +51,7 @@ public class InstructorDAOImpl implements InstructorDAO {
 		// obtenemos current hibernate session
 		Session currentSession = sessionFactory.getCurrentSession();
 
-		// Recuperamos el alumno con el id recibido y lo devolvemos al método del
+		// Recuperamos el instructor con el id recibido y lo devolvemos al método del
 		// controlador
 		// para mostrarlo en el formulario de alumno-form
 

@@ -1,5 +1,6 @@
 package com.love2code.springdemo.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+
 
 @Entity
 @Table(name = "instructor")
@@ -119,10 +122,31 @@ public class Instructor {
 		this.cursos = cursos;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return "Instructor [id=" + id + ", nombre=" + nombre + ", primerApellido=" + primerApellido
-				+ ", segundoApellido=" + segundoApellido + ", email=" + email + "]";
+				+ ", segundoApellido=" + segundoApellido + "]";
+	}*/
+	
+	@Override
+	public String toString() {
+		return nombre+" "+primerApellido+" "+segundoApellido;
 	}
 
+	
+
+	// Añadir métodos para la relacion bidireccional entre instructor y cursos
+	
+		public void addCurso(Curso tempCourse) {
+			
+			if(cursos==null) {
+				cursos=new ArrayList<>();
+			}
+			
+			cursos.add(tempCourse);
+			
+			tempCourse.setInstructor(this);
+		}
+
+	
 }

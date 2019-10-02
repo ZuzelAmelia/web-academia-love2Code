@@ -44,7 +44,8 @@ public class CursoDAOImpl implements CursoDAO {
 		Session currentSession = sessionFactory.getCurrentSession();
 
 		// guardamos/actualizamos el curso
-
+		
+		
 		currentSession.saveOrUpdate(elCurso);
 
 	}

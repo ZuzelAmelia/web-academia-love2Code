@@ -6,7 +6,7 @@
 <html>
 
 <head>
-<title>Paso 2: Seleccionar instructor</title>
+<title>Paso 1: Seleccionar instructor</title>
 
 <style>
 .error {
@@ -30,14 +30,11 @@
 	</div>
 
 	<div id="container">
-		<h3>Paso 2: Seleccionar instructor</h3>
+		<h3>Paso 1: Selecciona el  instructor</h3>
 		<i></i>
 
 
-
-
-		<form:form action="guardarInstructor" modelAttribute="instructores"
-			method="POST">
+	
 
 			<!-- asociamos los datos con el id del Curso -->
 
@@ -46,25 +43,20 @@
 				<tbody>
 					<tr>
 						<td><label>Instructor (*):</label></td>
-						<td><select name="instructor">
+						<td><select name="instructor" onchange="window.location.href = 'mostrarFormAgregarCurso?instructorId=' + this.options[this.selectedIndex].value;">
+								<option value="0">Selecciona el instructor</option>
 								<c:forEach var="tempInstructor" items="${instructores}">
 									<option value="${tempInstructor.id}">${tempInstructor.nombre}
-										${tempInstructor.primerApellido}</option>
+										${tempInstructor.primerApellido} ${tempInstructor.segundoApellido}</option>
 								</c:forEach>
 						</select></td>
 					</tr>
 
 
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Guardar" class="save" /></td>
-					</tr>
-
 				</tbody>
 			</table>
 
-		</form:form>
-	</div>
+			</div>
 
 </body>
 

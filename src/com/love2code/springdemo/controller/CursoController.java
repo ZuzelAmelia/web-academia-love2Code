@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.love2code.springdemo.entity.Curso;
-
+import com.love2code.springdemo.entity.Instructor;
 import com.love2code.springdemo.service.CursoService;
+import com.love2code.springdemo.service.InstructorService;
 
 @Controller
 @RequestMapping("/curso")
@@ -27,6 +28,10 @@ public class CursoController {
 	@Autowired
 	private CursoService cursoService;
 
+	@Autowired
+	private InstructorService instructorService;
+	
+	
 	// Método para listar todos los cursos de la base de datos
 	@GetMapping("/listado")
 	public String listadoCursos(Model theModel) {
@@ -45,17 +50,39 @@ public class CursoController {
 
 	// método para mostrar el formulario para añadir un nuevo curso
 	@GetMapping("/mostrarFormAgregarCurso")
-	public String mostrarFormAgregarCurso(Model theModel) {
+	public String mostrarFormAgregarCurso(@RequestParam("instructorId") int elIdInstructor, Model theModel) {
 
 		// Crear model attribute para enlazarlo con los datos del formulario
 
 		Curso elCurso = new Curso();
-
+		
+		//codigo nuevo
+		/*Obtenemos el Instructor con el id seleccionado en el formulario de elegir instructor*/
+		
+		Instructor elInstructor=instructorService.getInstructor(elIdInstructor);
+		
+		elCurso.setInstructor(elInstructor);
+					
 		theModel.addAttribute("curso", elCurso);
 
 		return "curso-form";
 
 	}
+	
+	//código nuevo
+	@GetMapping("/mostrarFormElegirInstructor")
+	public String listadoInstructoresSelect(Model theModel) {		
+						
+	// Recuperamos los cursos del servicio cursoService
+				
+	List<Instructor> losInstructores= instructorService.getInstructores();
+				
+	//Añadimos los instructores al modelo de spring mvc
+				
+	theModel.addAttribute("instructores", losInstructores);
+				
+	return "elegir-instructor-form";
+			}
 
 	// método que llama a la capa de servicio para guardar un nuevo curso
 	@PostMapping("/guardarCurso")
@@ -64,21 +91,14 @@ public class CursoController {
 		if (theBindingResult.hasErrors()) {
 
 			// si se han producido errores de validación se vuelve a mostrar el formulario
-			// de añadir curso
+			// de añadir cursoId
+			System.out.println("Se ha producido este error: "+theBindingResult.getAllErrors());
 			return "curso-form";
 		} else {
 
 			// Si no se han producido errores de validación guardamos el curso usando la
 			// capa de servicio cursoService
-			cursoService.guardarCurso(elCurso);
-
-			/*
-			 * int cursoId=elCurso.getId();
-			 * 
-			 * 
-			 * 
-			 * return "redirect:/instructor/listadoInstructores?cursoId="+cursoId;
-			 */
+			cursoService.guardarCurso(elCurso);			
 			return "redirect:/curso/listado";
 		}
 

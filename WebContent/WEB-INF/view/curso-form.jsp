@@ -30,7 +30,7 @@
 	</div>
 
 	<div id="container">
-		<h3>Guardar Curso. Paso 1: Título del Curso</h3>
+		<h3>Guardar Curso. Paso 2: Título del Curso</h3>
 		<i>Rellena el formulario. Los campos con asterisco (*) son
 			obligatorios.</i>
 
@@ -38,25 +38,39 @@
 
 			<!-- asociamos los datos con el id del Curso -->
 			<form:hidden path="id" />
-
+			
 			<table>
 				<tbody>
-					<tr>
-						<td><label>Título (*):</label></td>
-						<td><form:input path="titulo" /></td>
-						<td><form:errors path="titulo" cssClass="error" /></td>
-					</tr>
-
-
-
-					<tr>
-						<td><label></label></td>
-						<td><input type="submit" value="Guardar" class="save" /></td>
-					</tr>
-
-
-
-
+				<tr>
+				
+					<td><label>Id Instructor del Curso:</label></td>
+					<td><form:input path="instructor.id" readonly="true"></form:input></td>
+					
+					
+				</tr>	
+				
+				<tr>
+				
+					<td><label>Nombre y apellidos del instructor:</label></td>
+					<td><form:input path="instructor" readonly="true" disabled="true"></form:input></td>
+									
+				</tr>	
+					
+				<tr>
+					<td><label>Título del Curso (*):</label></td>
+					<td><form:input path="titulo" /></td>
+					<td><form:errors path="titulo" cssClass="error" /></td>
+				</tr>
+			
+				<tr>
+					<td><label></label></td>
+					<td><input type="submit" value="Guardar" class="save" /></td>
+						
+				</tr>
+					
+										
+															
+					
 				</tbody>
 			</table>
 

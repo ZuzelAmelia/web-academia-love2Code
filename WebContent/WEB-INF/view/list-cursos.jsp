@@ -30,7 +30,7 @@
 			<!-- Botón Añadir Curso -->
 
 			<input type="button" value="Añadir curso"
-				onclick="window.location.href='mostrarFormAgregarCurso'; return false;"
+				onclick="window.location.href='mostrarFormElegirInstructor'; return false;"
 				class="add-button" />
 
 			<!--  añadimos una caja de búsqueda -->
