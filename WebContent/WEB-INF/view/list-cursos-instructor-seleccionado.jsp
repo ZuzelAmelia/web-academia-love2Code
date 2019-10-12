@@ -6,7 +6,7 @@
 <html>
 
 <head>
-<title>Paso 1: Seleccionar instructor</title>
+<title>Los cursos del instructor seleccionado</title>
 
 <style>
 .error {
@@ -30,20 +30,22 @@
 	</div>
 
 	<div id="container">
-		<h3>Paso 1: Selecciona el  instructor</h3>
+		<h3>Listado de cursos que imparte el instructor</h3>
 		<i></i>
 
+<c:url var="updateLink" value="/curso/mostrarFormForUpdate">
+						<c:param name="cursoId" value="${tempCurso.id}" />
+					</c:url>
 			<!-- asociamos los datos con el id del Curso -->
 			<table>
 
 				<tbody>
 					<tr>
-						<td><label>Instructor (*):</label></td>
+						<td><label>Cursos:</label></td>
 						<td><select name="instructor" onchange="window.location.href = 'mostrarFormAgregarCurso?instructorId=' + this.options[this.selectedIndex].value;">
-								<option value="0">Selecciona el instructor</option>
-								<c:forEach var="tempInstructor" items="${instructores}">
-									<option value="${tempInstructor.id}">${tempInstructor.nombre}
-										${tempInstructor.primerApellido} ${tempInstructor.segundoApellido}</option>
+								<option value="0">Los cursos</option>
+								<c:forEach var="tempCurso" items="${cursos}">
+									<option value="${tempCurso.id}">${tempCurso.titulo} ${tempCurso.instructor.nombre} </option>
 								</c:forEach>
 							</select></td>
 					</tr>

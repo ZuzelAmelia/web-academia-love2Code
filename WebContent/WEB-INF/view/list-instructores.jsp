@@ -67,6 +67,12 @@
 					<c:url var="deleteLink" value="/instructor/eliminarInstructor">
 						<c:param name="instructorId" value="${tempInstructor.id}" />
 					</c:url>
+					
+					<!-- creamos un "viewCursosLink" link con el id del instructor para ver luego los cursos de ese instructor-->
+
+					<c:url var="viewCursosLink" value="/instructor/listadoCursosInstructor">
+						<c:param name="instructorId" value="${tempInstructor.id}" />
+					</c:url>
 
 					<tr>
 						<td>${tempInstructor.nombre}</td>
@@ -75,9 +81,10 @@
 						<td>${tempInstructor.email}</td>
 
 						<td>
-							<!-- display the update and delete links --> <a
-							href="${updateLink}">Editar</a> | <a href="${deleteLink}"
+							<!-- display the update and delete links --> 
+							<a href="${updateLink}">Editar</a> | <a href="${deleteLink}"
 							onclick="if (!(confirm('¿Desea borrar este instructor de la base de datos?'))) return false">Borrar</a>
+							| <a href="${viewCursosLink}">Ver cursos</a>
 
 
 						</td>

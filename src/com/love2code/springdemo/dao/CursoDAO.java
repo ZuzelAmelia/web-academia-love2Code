@@ -17,5 +17,7 @@ public interface CursoDAO {
 	void eliminarCurso(int elId);
 
 	List<Curso> buscarCursos(String theSearchName);
+	
+	List<Curso> getCursosInstructor(int elId);
 
 }

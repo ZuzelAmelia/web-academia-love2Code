@@ -23,11 +23,12 @@ import com.love2code.springdemo.service.InstructorService;
 @RequestMapping("/curso")
 public class CursoController {
 
-	// se inyecta el curso DAO en este controlador
-
+	// se inyecta el cursoService en este controlador
 	@Autowired
 	private CursoService cursoService;
 
+	
+	// Inyectamos el instructorService al controlador 
 	@Autowired
 	private InstructorService instructorService;
 	
@@ -56,8 +57,7 @@ public class CursoController {
 
 		Curso elCurso = new Curso();
 		
-		//codigo nuevo
-		/*Obtenemos el Instructor con el id seleccionado en el formulario de elegir instructor*/
+		//Obtenemos el Instructor con el id seleccionado en el formulario de elegir instructor
 		
 		Instructor elInstructor=instructorService.getInstructor(elIdInstructor);
 		
@@ -69,7 +69,7 @@ public class CursoController {
 
 	}
 	
-	//código nuevo
+	//método que devuelve la lista de todos los instructores para mostrarlos en un select dentro del jsp elegir-instructor-form
 	@GetMapping("/mostrarFormElegirInstructor")
 	public String listadoInstructoresSelect(Model theModel) {		
 						
@@ -92,7 +92,6 @@ public class CursoController {
 
 			// si se han producido errores de validación se vuelve a mostrar el formulario
 			// de añadir cursoId
-			System.out.println("Se ha producido este error: "+theBindingResult.getAllErrors());
 			return "curso-form";
 		} else {
 
@@ -108,16 +107,16 @@ public class CursoController {
 	@GetMapping("/mostrarFormForUpdate")
 	public String mostrarFormForUpdate(@RequestParam("cursoId") int elId, Model theModel) {
 
-		// busca el alumno desde nuestro servicio alumnoService
+		// busca el curso desde nuestro servicio cursoService
 
 		Curso elCurso = cursoService.getCurso(elId);
 
-		// el alumno lo configuramos como un model attribute para rellenar el formulario
+		// el curso lo configuramos como un model attribute para rellenar el formulario
 		// con los datos del curso
 
 		theModel.addAttribute("curso", elCurso);
 
-		// devuelve la información al formulario curso-form.jsp
+		// devuelve la información al formulario curso-form.jsp, el formulario debe tener el atributo modelAttribute="curso"
 
 		return "curso-form";
 
@@ -127,7 +126,7 @@ public class CursoController {
 	@GetMapping("/eliminarCurso")
 	public String eliminarAlumno(@RequestParam("cursoId") int elId) {
 
-		// Eliminar el alumno seleccionado
+		// Eliminar el curso seleccionado
 		cursoService.eliminarCurso(elId);
 
 		return "redirect:/curso/listado";
@@ -136,7 +135,7 @@ public class CursoController {
 	@GetMapping("/buscarCursos")
 	public String buscarCursos(@RequestParam("theSearchName") String theSearchName, Model theModel) {
 
-		// busca alumnos desde el servicio alumnoService
+		// busca cursos desde el servicio cursoService
 
 		List<Curso> losCursos = cursoService.buscarCursos(theSearchName);
 

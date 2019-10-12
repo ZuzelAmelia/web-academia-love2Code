@@ -52,4 +52,11 @@ public class CursoServiceImpl implements CursoService {
 		return cursoDAO.buscarCursos(theSearchName);
 	}
 
+	@Override
+	@Transactional
+	public List<Curso> getCursosInstructor(int elId) {
+		
+		return cursoDAO.getCursosInstructor(elId);
+	}
+
 }

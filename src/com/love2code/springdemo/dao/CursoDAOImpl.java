@@ -74,6 +74,25 @@ public class CursoDAOImpl implements CursoDAO {
 
 	}
 
+	//método para obtener la lista de Cursos de un instructor seleccionado	
+	@Override
+	public List<Curso> getCursosInstructor(int elId){
+		
+		// obtenemos current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+
+		//obtenemos los cursos cuyo instructor_id coincida con el parámetro recibido: elId
+				
+		Query<Curso> query = currentSession.createQuery("select c from Curso c "
+                 + "where c.instructor.id=:elInstructorId",    
+                 Curso.class);
+		query.setParameter("elInstructorId", elId);
+				
+		List<Curso> tempCursos = query.getResultList();
+		
+		return tempCursos;
+	}
+	
 	@Override
 	public List<Curso> buscarCursos(String theSearchName) {
 		// get the current hibernate session
@@ -81,9 +100,8 @@ public class CursoDAOImpl implements CursoDAO {
 
 		Query theQuery = null;
 
-		//
 		// solo busca por el nombre si el campo theSearchName no está vacío
-		//
+	
 		if (theSearchName != null && theSearchName.trim().length() > 0) {
 
 			// busca por titulo... case insensitive

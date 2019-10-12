@@ -18,4 +18,7 @@ public interface CursoService {
 
 	List<Curso> buscarCursos(String theSearchName);
 
+	List<Curso> getCursosInstructor(int elId);
+
+
 }

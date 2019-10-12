@@ -14,18 +14,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+import com.love2code.springdemo.entity.Curso;
 import com.love2code.springdemo.entity.Instructor;
+import com.love2code.springdemo.service.CursoService;
 import com.love2code.springdemo.service.InstructorService;
 
 @Controller
 @RequestMapping("/instructor")
 public class InstructorController {
 	
-	//se inyecta el instructor DAO en este controlador
-	
+		//se inyecta el instructor DAO en este controlador	
 		@Autowired
 		private InstructorService instructorService;
+		
+		// se inyecta el cursoService en este controlador
+		@Autowired
+		private CursoService cursoService;
 		
 		//Método para listar todos los instructores de la base de datos
 		
@@ -58,12 +62,26 @@ public class InstructorController {
 			return "elegir-instructor-form";
 		}
 		
+		//método para mostrar el listado de cursos de un instructor seleccionado
+				@GetMapping("/listadoCursosInstructor")
+				public String listadoCursosInstructor(@RequestParam("instructorId") int elId, Model theModel) {
+					
+					// buscamos los cursos del instructor cuyo id coincida con el parámetro elId
+					System.out.println("El id del instructor es: "+elId);
+					List<Curso> losCursos= cursoService.getCursosInstructor(elId);
+					System.out.println("Los cursos del instructor son: "+losCursos);
+									
+					theModel.addAttribute("cursos", losCursos);				
+					
+					
+					return "list-cursos-instructor-seleccionado";
+				}
+				
 		// método para mostrar el formulario para añadir un nuevo curso
 				@GetMapping("/mostrarFormAgregarInstructor")
 				public String mostrarFormAgregarInstructor(Model theModel) {
 					
 					// Crear model attribute para enlazarlo con los datos del formulario
-
 					Instructor elInstructor=new Instructor();
 					
 					theModel.addAttribute("instructor", elInstructor);
@@ -97,16 +115,16 @@ public class InstructorController {
 				public String mostrarFormForUpdate(@RequestParam("instructorId") int theId,
 						Model theModel) {
 
-						// busca el alumno desde nuestro servicio alumnoService 
+						// busca el instructor desde nuestro servicio instructorService 
 					
 						Instructor elInstructor=instructorService.getInstructor(theId);
 						
 							
-						// el alumno lo configuramos como un model attribute para rellenar el formulario con los datos del alumno
+						// el instructor lo configuramos como un model attribute para rellenar el formulario con los datos del instructor
 						
 						theModel.addAttribute("instructor",elInstructor);			
 
-						// devuelve la información al formulario alumno-form.jsp
+						// devuelve la información al formulario instructor-form.jsp
 
 						return "instructor-form";
 
